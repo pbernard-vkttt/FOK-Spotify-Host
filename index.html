@@ -6,8 +6,18 @@
   <meta name="description" content="Curated by the FOK team — listen on Spotify." />
   <title>Playlist | Curated by the FOK team</title>
 
+  <!-- Social previews -->
+  <meta property="og:title" content="Kizomba Vibes | Friends of Kiz" />
+  <meta property="og:description" content="Curated by the FOK team — listen on Spotify." />
+  <meta property="og:type" content="website" />
+  <!-- TODO: replace with your hosted image + url -->
+  <meta property="og:image" content="https://github.com/pbernard-vkttt/FOK-Spotify-Host/blob/main/fok-logo.png" />
+  <meta property="og:url" content="https://music.friendsofkiz.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
     :root{
+      color-scheme: dark;
       --bg0:#070510;
       --bg1:#1b0f3a;
       --card:rgba(255,255,255,.06);
@@ -19,147 +29,96 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background:
-        radial-gradient(900px 600px at 20% 15%, rgba(170,75,255,.35), transparent 60%),
-        radial-gradient(900px 600px at 80% 25%, rgba(90,0,180,.28), transparent 55%),
-        radial-gradient(1200px 800px at 50% 90%, rgba(255,120,90,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px 16px;
-    }
 
-    .wrap{
-      width:min(980px, 100%);
-      display:grid;
-      gap:18px;
-    }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  background:
+    radial-gradient(900px 600px at 20% 15%, rgba(170,75,255,.35), transparent 60%),
+    radial-gradient(900px 600px at 80% 25%, rgba(90,0,180,.28), transparent 55%),
+    radial-gradient(1200px 800px at 50% 90%, rgba(255,120,90,.10), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  padding:28px 16px;
 
-    header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-    }
+  /* NEW: full-height page layout (footer can sit at bottom) */
+  min-height: 100svh;
+  display:flex;
+  justify-content:center;
+  align-items:stretch; /* was center */
+}
 
-    .brand{
-      display:flex;
-      gap:14px;
-      align-items:center;
-      min-width:0;
-    }
+/* NEW: make wrap a full-height 3-row layout */
+.wrap{
+  width:min(980px, 100%);
+  display:grid;
+  gap:18px;
 
-    /* Replace with your logo image */
-    .logo{
-      width:46px;height:46px;
-      border-radius:14px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.08);
-      display:grid;
-      place-items:center;
-      flex:0 0 auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-      overflow:hidden;
-    }
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .logo span{
-      font-weight:800;
-      letter-spacing:.06em;
-      font-size:13px;
-      opacity:.9;
-    }
+  /* header / content / footer */
+  grid-template-rows: auto 1fr auto;
 
-    h1{
-      margin:0;
-      font-size: clamp(22px, 3vw, 34px);
-      line-height:1.1;
-      letter-spacing:-.02em;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .sub{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.4;
-      max-width: 62ch;
-    }
+  /* stretch to fill available height */
+  min-height: calc(100svh - 56px); /* subtract body padding (28*2) */
+}
 
-    .actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .btn{
-      appearance:none;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:14px;
-      text-decoration:none;
-      font-size:14px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); }
-    .btn:active{ transform: translateY(0px); }
+/* Keep your embed responsive, but allow it to grow/shrink inside the middle row */
+.embed{
+  width:100%;
+  height: clamp(360px, 65vh, 620px);
+}
 
-    .card{
-      border:1px solid var(--stroke);
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
+/* Ensure the card can shrink gracefully if needed */
+.card{
+  min-height: 0;
+}
 
-    /* Responsive Spotify embed */
-    .embed{
-      width:100%;
-      height: 560px;              /* desktop default */
-      max-height: 70vh;   
-    }
-    iframe{
-      width:100%;
-      height:100%;
-      border:0;
-      display:block;
-      background: transparent;
-    }
+/* Footer stays at bottom naturally because of grid rows */
+footer{
+  margin-top: 4px;
+}
 
-    footer{
-      color:var(--muted);
-      font-size:12px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      padding: 0 4px;
-    }
-    footer a{ color:var(--muted); }
-    footer a:hover{ color:var(--text); }
+/* MOBILE TWEAKS */
+@media (max-width: 640px){
+  body{
+    padding:14px 12px; /* closer to top */
+  }
 
-    @media (max-width: 640px){
-      header{ flex-direction:column; align-items:stretch; }
-      .actions{ justify-content:flex-start; }
-      .embed{ height: 352px; max-height: none; }
-    }
+  .wrap{
+    gap:12px;
+    min-height: calc(100svh - 28px); /* subtract new mobile padding (14*2) */
+  }
+
+  header{
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px; /* tighter */
+  }
+
+  .brand{
+    gap:10px; /* tighter */
+    align-items:flex-start;
+  }
+
+  .logo{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+  }
+
+  .sub{
+    margin-top:4px;
+  }
+
+  .actions{
+    justify-content:flex-start;
+  }
+
+  .embed{
+    height: 352px;
+    max-height: none;
+  }
+}
+
   </style>
 </head>
 
@@ -167,33 +126,27 @@
   <main class="wrap">
     <header>
       <div class="brand">
-        <!-- OPTION A: Use your logo image -->
-        <!-- Replace "fok-logo.png" with your hosted logo path -->
         <div class="logo" aria-label="FOK logo">
-          <!-- If you don't have a logo file yet, comment the img and use the span fallback -->
-          <img src="fok-logo.png" alt="FOK" onerror="this.remove(); this.parentElement.innerHTML='<span>FOK</span>';">
+          <img id="logoImg" src="fok-logo.png" alt="FOK">
+          <span id="logoFallback" style="display:none;">FOK</span>
         </div>
 
         <div style="min-width:0">
-          <!-- Change the playlist name here -->
           <h1 id="playlistTitle">Kizomba Vibes</h1>
           <p class="sub">Curated by the FOK team. Press play, share with a friend, and let the vibe carry.</p>
         </div>
       </div>
 
       <div class="actions">
-        <!-- Replace with your playlist URL -->
         <a class="btn" id="openSpotify" href="https://open.spotify.com/playlist/46FTdlQCcfAVYjnWGNNCw2" target="_blank" rel="noopener">
           🎧 Open in Spotify
         </a>
-        <!-- <a class="btn" href="#listen">⬇️ Listen here</a> -->
+        <button class="btn" id="copyBtn" type="button">🔗 Copy link</button>
       </div>
     </header>
 
     <section class="card" id="listen" aria-label="Spotify playlist embed">
       <div class="embed">
-        <!-- Spotify embed: replace PLAYLIST_ID if needed -->
-        <!-- Using your current playlist ID: 0gtPYf9681cjigt35jQ6I0 -->
         <iframe
           title="Spotify playlist"
           src="https://open.spotify.com/embed/playlist/46FTdlQCcfAVYjnWGNNCw2?utm_source=generator&theme=0"
@@ -206,19 +159,27 @@
     <footer>
       <div>© <span id="year"></span> Friends of Kiz</div>
       <div>
-        <a href="#" id="shareLink">Share this page</a>
-        &nbsp;•&nbsp;
         <a href="https://open.spotify.com" target="_blank" rel="noopener">Spotify</a>
       </div>
     </footer>
   </main>
 
+  <div class="toast" id="toast" role="status" aria-live="polite">Link copied</div>
+
   <script>
     // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // OPTIONAL: customize via query params
-    // Example: index.html?name=Aura&playlist=0gtPYf9681cjigt35jQ6I0
+    // Logo fallback (cleaner than inline onerror)
+    const logoImg = document.getElementById("logoImg");
+    const logoFallback = document.getElementById("logoFallback");
+    logoImg.addEventListener("error", () => {
+      logoImg.style.display = "none";
+      logoFallback.style.display = "block";
+    });
+
+    // Optional: customize via query params
+    // Example: index.html?name=Aura&playlist=46FTdlQCcfAVYjnWGNNCw2
     const params = new URLSearchParams(location.search);
     const name = params.get("name");
     const playlistId = params.get("playlist");
@@ -232,23 +193,21 @@
         `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
     }
 
-    // Share link behavior (uses Web Share API if available)
-    document.getElementById("shareLink").addEventListener("click", async (e) => {
-      e.preventDefault();
-      const title = document.getElementById("playlistTitle").textContent + " — curated by the FOK team";
-      const url = location.href;
+    // Copy link button + toast
+    const toast = document.getElementById("toast");
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1200);
+    }
 
-      if (navigator.share) {
-        try {
-          await navigator.share({ title, url });
-        } catch (_) {}
-      } else {
-        try {
-          await navigator.clipboard.writeText(url);
-          alert("Link copied!");
-        } catch (_) {
-          prompt("Copy this link:", url);
-        }
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const url = location.href;
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast("Link copied!");
+      } catch (_) {
+        prompt("Copy this link:", url);
       }
     });
   </script>
