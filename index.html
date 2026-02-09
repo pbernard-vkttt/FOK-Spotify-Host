@@ -132,8 +132,8 @@
     /* Responsive Spotify embed */
     .embed{
       width:100%;
-      aspect-ratio: 16 / 9;
-      min-height: 520px; /* helps on desktop */
+      height: 560px;              /* desktop default */
+      max-height: 70vh;   
     }
     iframe{
       width:100%;
@@ -158,7 +158,7 @@
     @media (max-width: 640px){
       header{ flex-direction:column; align-items:stretch; }
       .actions{ justify-content:flex-start; }
-      .embed{ min-height: 620px; aspect-ratio:auto; }
+      .embed{ height: 352px; max-height: none; }
     }
   </style>
 </head>
