@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Curated by the FOK team — listen on Spotify." />
-  <title>Playlist | Curated by the FOK team</title>
+  <meta name="description" content="Curated by Friends of Kiz — listen on Spotify." />
+  <title>Kizomba Vibes | Friends of Kiz</title>
 
   <meta property="og:title" content="Kizomba Vibes | Friends of Kiz" />
-  <meta property="og:description" content="Community playlist by the FOK Team — listen on Spotify." />
+  <meta property="og:description" content="Community playlist by Friends of Kiz — listen on Spotify." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://music.friendsofkiz.com/fok-logo.png" />
   <meta property="og:url" content="https://music.friendsofkiz.com/" />
@@ -190,7 +190,7 @@
         <div style="min-width:0">
           <!-- Change the playlist name here -->
           <h1 id="playlistTitle">Community Playlist</h1>
-          <p class="sub">by the F.O.K Team.</p>
+          <p class="sub">by Friends of Kiz</p>
         </div>
       </div>
 
@@ -248,7 +248,7 @@
     // Share link behavior (uses Web Share API if available)
     document.getElementById("shareLink").addEventListener("click", async (e) => {
       e.preventDefault();
-      const title = document.getElementById("playlistTitle").textContent + " — curated by the FOK team";
+      const title = document.getElementById("playlistTitle").textContent + " — curated by Friends of Kiz";
       const url = location.href;
 
       if (navigator.share) {
